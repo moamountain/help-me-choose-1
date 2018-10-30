@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en>
   <head>
-    <meta charset="uft-8">
+    <meta charset=utf-8>
     <title>Help me choose</title>
     <link href="./main.css" rel="stylesheet" type="text/css">
   </head>
@@ -9,16 +9,14 @@
     <h1>Hello there! Help me choose between..</h1>
     <div class="inputSection">
       <div class="inputs">
-        <input placeholder="Somting"></input>
+        <input placeholder="Something"></input>
       </div>
       <button class="addOption">Add</button>
     </div>
-    <div class="resultSecton"></div>
-    <button>Go!</button>
-    <br>
-    <img src=https://pp2-resources.s3.amazonaws.com/41101/852671-3798901-vlj8avtb3p.jpg>
+    <div class="resultSection"></div>
+    <button class="submit">Go!</button>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script>
       $(function() {
         $('.resultSection').hide()
@@ -26,8 +24,20 @@
         var add_option = function() {
           $('.inputs').append('<input></input>')
         }
-
         $('.addOption').click(add_option)
+
+        var options = []
+        var submit = function() {
+          $('.inputSection').hide()
+          $('.resultSection').css('display', 'flex')
+          $('input').each(function() {
+            options.push($(this).val())
+          })
+          var winner = options[Math.floor(Math.random() * options.length)]
+          console.log(winner)
+          $('.resultSection').text(winner)
+        }
+        $('.submit').click(submit)
       })
     </script>
   </body>
